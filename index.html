@@ -519,19 +519,107 @@
             background: #e53e3e;
         }
 
-        /* --- RESPONSIVE DESIGN --- */
+        /* --- DESKTOP RESPONSIVE DESIGN --- */
+        @media (min-width: 1024px) {
+            .status-bar {
+                top: 20px;
+                padding: 0 30px;
+            }
+            
+            .status-item {
+                font-size: 1rem;
+                padding: 8px 14px;
+                border-radius: 18px;
+            }
+
+            .status-center .status-item {
+                padding: 12px 20px;
+                min-width: 140px;
+            }
+
+            .time-display {
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-bottom: 2px;
+            }
+
+            .date-display {
+                font-size: 0.9rem;
+                opacity: 0.85;
+            }
+            
+            .battery-icon {
+                width: 24px;
+                height: 12px;
+            }
+            
+            .header {
+                padding: 70px 40px 40px 40px;
+            }
+            
+            .header h1 {
+                margin-top: 10px;
+                font-size: 3rem;
+            }
+            
+            .header p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* --- TABLET RESPONSIVE DESIGN --- */
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .status-bar {
+                top: 18px;
+                padding: 0 25px;
+            }
+            
+            .status-item {
+                font-size: 0.95rem;
+                padding: 6px 12px;
+            }
+
+            .status-center .status-item {
+                padding: 10px 16px;
+                min-width: 120px;
+            }
+
+            .time-display {
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+
+            .date-display {
+                font-size: 0.85rem;
+            }
+            
+            .battery-icon {
+                width: 22px;
+                height: 11px;
+            }
+            
+            .header {
+                padding: 60px 30px 35px 30px;
+            }
+            
+            .header h1 {
+                font-size: 2.7rem;
+            }
+        }
+
+        /* --- MOBILE RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
             }
             
             .header {
-                padding: 50px 20px 30px 20px; /* Tambah padding atas untuk status bar */
+                padding: 50px 20px 30px 20px;
             }
             
             .header h1 {
                 font-size: 2rem;
-                margin-top: 20px; /* Beri jarak dari status bar */
+                margin-top: 20px;
             }
             
             .services-grid {
@@ -543,7 +631,6 @@
                 padding: 20px;
             }
             
-            /* Status bar tetap horizontal di mobile */
             .status-bar {
                 top: 15px;
                 padding: 0 15px;
