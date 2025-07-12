@@ -104,6 +104,26 @@
             align-items: center;
             gap: 5px;
         }
+
+        /* Style khusus untuk status center (jam dan tanggal) */
+        .status-center .status-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 2px;
+            padding: 8px 12px;
+        }
+
+        .time-display {
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .date-display {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            line-height: 1.2;
+        }
         
         .battery-icon {
             width: 20px;
@@ -533,6 +553,18 @@
                 font-size: 0.8rem;
                 padding: 4px 8px;
             }
+
+            .status-center .status-item {
+                padding: 6px 10px;
+            }
+
+            .time-display {
+                font-size: 0.9rem;
+            }
+
+            .date-display {
+                font-size: 0.7rem;
+            }
             
             .battery-icon {
                 width: 18px;
@@ -569,6 +601,18 @@
             .status-item {
                 font-size: 0.7rem;
                 padding: 3px 6px;
+            }
+
+            .status-center .status-item {
+                padding: 5px 8px;
+            }
+
+            .time-display {
+                font-size: 0.8rem;
+            }
+
+            .date-display {
+                font-size: 0.6rem;
             }
             
             .battery-icon {
