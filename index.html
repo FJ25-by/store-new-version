@@ -57,10 +57,14 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             padding: 0 20px;
             pointer-events: none;
             z-index: 2;
+        }
+
+        .status-center {
+            margin-top: -10px;
         }
         
         .status-left,
@@ -69,21 +73,25 @@
             align-items: center;
             gap: 10px;
             pointer-events: auto;
-            flex: 1;
         }
         
         .status-left {
             justify-content: flex-start;
+            flex: 1;
         }
         
         .status-center {
-            display: flex;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
             justify-content: center;
             flex: none;
         }
         
         .status-right {
             justify-content: flex-end;
+            flex: 1;
         }
         
         .status-item {
