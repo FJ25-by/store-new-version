@@ -64,8 +64,9 @@
         }
 
         .status-center {
-            margin-top: -10px; /* Hanya waktu diangkat sedikit ke atas */
+            margin-top: -10px;
         }
+        
         .status-left,
         .status-right {
             display: flex;
@@ -73,10 +74,12 @@
             gap: 10px;
             pointer-events: auto;
         }
+        
         .status-left {
             justify-content: flex-start;
             flex: 1;
         }
+        
         .status-center {
             position: absolute;
             left: 50%;
@@ -85,10 +88,12 @@
             justify-content: center;
             flex: none;
         }
+        
         .status-right {
             justify-content: flex-end;
             flex: 1;
         }
+        
         .status-item {
             background: rgba(0, 0, 0, 0.3);
             padding: 5px 10px;
@@ -99,6 +104,7 @@
             align-items: center;
             gap: 5px;
         }
+        
         .battery-icon {
             width: 20px;
             height: 10px;
@@ -107,6 +113,7 @@
             position: relative;
             background: rgba(255, 255, 255, 0.2);
         }
+        
         .battery-icon::after {
             content: '';
             position: absolute;
@@ -117,12 +124,14 @@
             background: white;
             border-radius: 0 1px 1px 0;
         }
+        
         .battery-fill {
             height: 100%;
             border-radius: 1px;
             background: white;
             transition: width 0.3s ease;
         }
+        
         .charging-icon {
             font-size: 0.7rem;
             margin-left: 3px;
@@ -490,68 +499,90 @@
             background: #e53e3e;
         }
 
-        /* --- RESPONSIVE STATUS BAR --- */
+        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
             }
+            
+            .header {
+                padding: 50px 20px 30px 20px; /* Tambah padding atas untuk status bar */
+            }
+            
             .header h1 {
                 font-size: 2rem;
+                margin-top: 20px; /* Beri jarak dari status bar */
             }
-            .status-bar {
-                position: static;
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 0;
-                padding: 0;
-                margin-bottom: 10px;
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-            .status-left,
-            .status-center,
-            .status-right {
-                position: static;
-                transform: none;
-                justify-content: center;
-                flex: none;
-            }
-            .status-center {
-                grid-column: 2;
-            }
-            .status-left {
-                grid-column: 1;
-                justify-content: flex-start;
-            }
-            .status-right {
-                grid-column: 3;
-                justify-content: flex-end;
-            }
-        }
-        @media (max-width: 480px) {
-            .header {
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 1.8rem;
-            }
+            
             .service-card {
                 padding: 20px;
             }
+            
+            /* Status bar tetap horizontal di mobile */
             .status-bar {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
-                gap: 5px;
+                top: 15px;
+                padding: 0 15px;
             }
-            .status-left,
-            .status-center,
-            .status-right {
-                justify-content: center;
-            }
-            .status-center, .status-left, .status-right {
-                grid-column: 1;
-            }
+            
             .status-item {
                 font-size: 0.8rem;
-                padding: 3px 8px;
+                padding: 4px 8px;
+            }
+            
+            .battery-icon {
+                width: 18px;
+                height: 9px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 55px 15px 25px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 15px;
+            }
+            
+            .service-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .status-bar {
+                padding: 0 10px;
+            }
+            
+            .status-item {
+                font-size: 0.7rem;
+                padding: 3px 6px;
+            }
+            
+            .battery-icon {
+                width: 16px;
+                height: 8px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 10% auto;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
             }
         }
     </style>
