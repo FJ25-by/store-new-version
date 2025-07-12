@@ -48,28 +48,47 @@
             font-size: 1.1rem;
         }
 
+        /* --- STATUS BAR --- */
         .status-bar {
             position: absolute;
             top: 15px;
             left: 0;
             right: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             padding: 0 20px;
-        }
-
-        .status-left, .status-center, .status-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            pointer-events: none;
+            z-index: 2;
         }
 
         .status-center {
+            margin-top: -10px; /* Hanya waktu diangkat sedikit ke atas */
+        }
+        .status-left,
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+        }
+        .status-left {
+            justify-content: flex-start;
+            flex: 1;
+        }
+        .status-center {
             position: absolute;
             left: 50%;
+            top: 0;
             transform: translateX(-50%);
+            justify-content: center;
+            flex: none;
         }
-
+        .status-right {
+            justify-content: flex-end;
+            flex: 1;
+        }
         .status-item {
             background: rgba(0, 0, 0, 0.3);
             padding: 5px 10px;
@@ -80,7 +99,6 @@
             align-items: center;
             gap: 5px;
         }
-
         .battery-icon {
             width: 20px;
             height: 10px;
@@ -89,7 +107,6 @@
             position: relative;
             background: rgba(255, 255, 255, 0.2);
         }
-
         .battery-icon::after {
             content: '';
             position: absolute;
@@ -100,20 +117,19 @@
             background: white;
             border-radius: 0 1px 1px 0;
         }
-
         .battery-fill {
             height: 100%;
             border-radius: 1px;
             background: white;
             transition: width 0.3s ease;
         }
-
         .charging-icon {
             font-size: 0.7rem;
             margin-left: 3px;
         }
 
-        /* Rest of your existing CSS remains the same */
+        /* --- END STATUS BAR --- */
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -474,58 +490,65 @@
             background: #e53e3e;
         }
 
+        /* --- RESPONSIVE STATUS BAR --- */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
             }
-
             .header h1 {
                 font-size: 2rem;
             }
-
             .status-bar {
                 position: static;
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-                margin-top: 15px;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0;
+                padding: 0;
+                margin-bottom: 10px;
             }
-
-            .status-left, .status-center, .status-right {
+            .status-left,
+            .status-center,
+            .status-right {
                 position: static;
                 transform: none;
+                justify-content: center;
+                flex: none;
             }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .status-center {
+                grid-column: 2;
             }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 15px;
+            .status-left {
+                grid-column: 1;
+                justify-content: flex-start;
             }
-
-            .modal-content {
-                margin: 2% auto;
-                width: 95%;
-                padding: 20px;
+            .status-right {
+                grid-column: 3;
+                justify-content: flex-end;
             }
         }
-
         @media (max-width: 480px) {
             .header {
                 padding: 20px;
             }
-
             .header h1 {
                 font-size: 1.8rem;
             }
-
             .service-card {
                 padding: 20px;
             }
-
+            .status-bar {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 5px;
+            }
+            .status-left,
+            .status-center,
+            .status-right {
+                justify-content: center;
+            }
+            .status-center, .status-left, .status-right {
+                grid-column: 1;
+            }
             .status-item {
                 font-size: 0.8rem;
                 padding: 3px 8px;
@@ -539,21 +562,26 @@
         <div class="header">
             <h1>🚀 Store Yuji</h1>
             <p><span class="status-indicator"></span>Layanan Digital Terpercaya & Berkualitas</p>
-            
             <div class="status-bar">
-                <div class="status-item" id="realTimeClock">
-                    <span id="time">00:00:00</span>
-                    <span id="date">01 Jan 2023</span>
-                </div>
-                <div class="status-item">
-                    <span id="ipAddress">Loading...</span>
-                </div>
-                <div class="status-item">
-                    <div class="battery-icon">
-                        <div class="battery-fill" id="batteryFill"></div>
+                <div class="status-left">
+                    <div class="status-item">
+                        <div class="battery-icon">
+                            <div class="battery-fill" id="batteryFill"></div>
+                        </div>
+                        <span id="batteryLevel">100%</span>
+                        <span class="charging-icon" id="chargingIcon">⚡</span>
                     </div>
-                    <span id="batteryLevel">100%</span>
-                    <span class="charging-icon" id="chargingIcon">⚡</span>
+                </div>
+                <div class="status-center">
+                    <div class="status-item" id="realTimeClock">
+                        <span id="time">00:00:00</span>
+                        <span id="date">01 Jan 2023</span>
+                    </div>
+                </div>
+                <div class="status-right">
+                    <div class="status-item">
+                        <span id="ipAddress">Loading...</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -565,35 +593,30 @@
                 <div class="price">Mulai dari Rp 1.000</div>
                 <button class="btn" onclick="openModal('Social Media Panel', 1000)">Pesan Sekarang</button>
             </div>
-
             <div class="service-card">
                 <h3><span class="icon">🎮</span>Game Top Up</h3>
                 <p>Top up diamond Mobile Legends, Free Fire, PUBG, Genshin Impact, dan game populer lainnya.</p>
                 <div class="price">Mulai dari Rp 5.000</div>
                 <button class="btn" onclick="openModal('Game Top Up', 5000)">Pesan Sekarang</button>
             </div>
-
             <div class="service-card">
                 <h3><span class="icon">📞</span>Pulsa & Data</h3>
                 <p>Pulsa dan paket data untuk semua operator Indonesia dengan harga terjangkau.</p>
                 <div class="price">Mulai dari Rp 5.000</div>
                 <button class="btn" onclick="openModal('Pulsa & Data', 5000)">Pesan Sekarang</button>
             </div>
-
             <div class="service-card">
                 <h3><span class="icon">💳</span>E-Wallet</h3>
                 <p>Top up saldo GoPay, OVO, DANA, ShopeePay dan e-wallet lainnya.</p>
                 <div class="price">Mulai dari Rp 10.000</div>
                 <button class="btn" onclick="openModal('E-Wallet', 10000)">Pesan Sekarang</button>
             </div>
-
             <div class="service-card">
                 <h3><span class="icon">🎬</span>Streaming Premium</h3>
                 <p>Akun premium Netflix, Spotify, YouTube Premium, Disney+ dan layanan streaming lainnya.</p>
                 <div class="price">Mulai dari Rp 15.000</div>
                 <button class="btn" onclick="openModal('Streaming Premium', 15000)">Pesan Sekarang</button>
             </div>
-
             <div class="service-card">
                 <h3><span class="icon">🛡</span>Software License</h3>
                 <p>License Windows, Office, antivirus dan software premium lainnya dengan harga terjangkau.</p>
