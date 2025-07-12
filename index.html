@@ -51,10 +51,23 @@
         .status-bar {
             position: absolute;
             top: 15px;
-            right: 20px;
+            left: 0;
+            right: 0;
             display: flex;
-            gap: 15px;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .status-left, .status-center, .status-right {
+            display: flex;
             align-items: center;
+            gap: 15px;
+        }
+
+        .status-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .status-item {
@@ -100,6 +113,7 @@
             margin-left: 3px;
         }
 
+        /* Rest of your existing CSS remains the same */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -471,8 +485,15 @@
 
             .status-bar {
                 position: static;
-                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
                 margin-top: 15px;
+            }
+
+            .status-left, .status-center, .status-right {
+                position: static;
+                transform: none;
             }
 
             .services-grid {
